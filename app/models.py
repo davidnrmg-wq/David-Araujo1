@@ -59,6 +59,16 @@ class Genero(models.Model):
     class Meta:
         verbose_name = "Gênero"
         verbose_name_plural = "Gêneros"
+        from django.db import models
+
+class Emprestimo(models.Model):
+    livro = models.ForeignKey('Livro', on_delete=models.CASCADE)
+    leitor = models.ForeignKey('Leitor', on_delete=models.CASCADE)
+    data_emprestimo = models.DateField()
+    data_devolucao = models.DateField()
+
+    def __str__(self):
+        return f"{self.livro} - {self.leitor}"
 
 
 class Livro(models.Model):
